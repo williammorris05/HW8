@@ -1,7 +1,6 @@
 /******************************************************************
  *
- *   ADD YOUR NAME / SECTION NUMBER HERE
- *
+ *   WILLIAM MORRIS / 002
  *   This java file contains the problem solutions of canFinish and
  *   numGroups methods.
  *
@@ -72,20 +71,19 @@ class ProblemSolutions {
      * @return boolean          - True if all exams can be taken, else false.
      */
 
-    public boolean canFinish(int numExams, 
-                             int[][] prerequisites) {
-      
-        int numNodes = numExams;  // # of nodes in graph
+    public boolean canFinish(int numExams, int[][] prerequisites) {
+        ArrayList<Integer>[] adj = getAdjList(numExams, prerequisites);
 
-        // Build directed graph's adjacency list
-        ArrayList<Integer>[] adj = getAdjList(numExams, 
-                                        prerequisites); 
+        int[] visited = new int[numExams];
 
-        // ADD YOUR CODE HERE - ADD YOUR NAME / SECTION AT TOP OF FILE
-        return false;
+        for (int i = 0; i < numExams; i++) { //perform DFS for each node
 
+            if (visited[i] == 0 && !dfs(i, adj, visited)) {
+                return false;  // If a cycle is found
+            }
+        }
+        return true;
     }
-
 
     /**
      * Method getAdjList
@@ -190,7 +188,7 @@ class ProblemSolutions {
             }
         }
 
-        // YOUR CODE GOES HERE - you can add helper methods, you do not need
+        //  GOES HERE - you can add helper methods, you do not need
         // to put all code in this method.
         return -1;
     }
