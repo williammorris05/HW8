@@ -1,6 +1,6 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   WILLIAM MORRIS / 002
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -102,9 +102,26 @@ public class Graph {
    * 
    */
   
-  public int findRoot() {
+   public int findRoot() {
+     int[] incomingEdges = new int[numVertices];
 
-    // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
-    return -1;
-  } 
+    for (int i = 0; i < numVertices; i++) { // Traverse  adjacency list counting incoming edges for each destination
+
+      for (Integer dest : adjListArr[i]) {
+        incomingEdges[dest]++;
+      }
+    }
+
+    int rootCount = 0; // Search for vertex with no incoming edges
+    int rootValue = -1;
+
+    for (int i = 0; i < numVertices; i++) {
+      if (incomingEdges[i] == 0) {
+        rootCount++;
+        rootValue = vertexValues.get(i);  // Get the value of the root vertex
+      }
+    }
+
+    return rootCount == 1 ? rootValue : -1;
+  }
 }
